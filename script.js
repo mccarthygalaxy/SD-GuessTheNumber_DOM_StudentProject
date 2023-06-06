@@ -7,8 +7,19 @@ function randomNumber(userGuess, computersNumber) {
 
     // YOUR CODE BELOW
 
+    //! Computer Secret vs User Guess
+    //! Basic Logic w/ my variables/reponses
 
+let guessN = userGuess;
+let secretN = computersNumber;
 
+if (guessN > secretN) {
+    console.log(`Too High. Guess lower.`)
+} else if (guessN < secretN) {
+    console.log(`Too Low. Guess higher.`)
+} else if (guessN == secretN) {
+    console.log(`That is right! ${guessN} is the Secret Number!`);
+}
 
     // YOUR CODE ABOVE
 };
