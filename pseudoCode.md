@@ -14,6 +14,11 @@
         c. if guess < target say "too low"
         d. if guess == target say "win"
 
+## Stretch Goal I
+
+    * Track and count the number of guesses it takes
+    * Use `counterN` variable starting at 0 to track and log at end of game 
+
 
 ## Computer Guesses Your Number:
 ~~### Each Guess will produce a new array of numbers. Each array will divide the previous array. Each array smaller than previous. Should divide and eliminate numbers out of bounds. Use.splice?~~
@@ -44,3 +49,7 @@
     if guess is too high, now set max to 1 minus guess.
     goto *GUESS*
 
+## Stretch Goal II
+
+    * Create secondary IF conditional to see if subsequent guesses are outside of the new range (`cheating`)
+    * Possibly create a separate *FUNCTION* to call that checks if guesses are consistent to range
