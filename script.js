@@ -5,7 +5,7 @@
 
 // YOUR CODE BELOW
 
-const usedGuesses = [];
+let usedGuesses = [];
 let min = 1;
 let max = 100;
 
@@ -19,6 +19,12 @@ function randomNumber(userGuess, computersNumber) {
     if (guessN > max || guessN < min) { 
         console.log(`${guessN} is outside set limits`);
         responseString = `Warning, ${guessN} is outside the bounds.`;
+        usedGuesses.push(guessN);
+        console.log(usedGuesses);
+        return responseString;
+    } else if (usedGuesses.includes(guessN)) { 
+        console.log(`${guessN} is a REPEAT GUESS.`);
+        responseString = `Warning, ${guessN} is a guess you've already made.`;
         usedGuesses.push(guessN);
         console.log(usedGuesses);
         return responseString;
@@ -47,5 +53,4 @@ function randomNumber(userGuess, computersNumber) {
 // return responseString;
     // YOUR CODE ABOVE
 };
-
 
