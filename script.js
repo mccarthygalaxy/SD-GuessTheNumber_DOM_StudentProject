@@ -54,3 +54,39 @@ function randomNumber(userGuess, computersNumber) {
     // YOUR CODE ABOVE
 };
 
+
+let pcGuess2 = null;
+let usedPCGuesses = [];
+let min2 = 1;
+let max2 = 100;
+
+function startCompGuess(num) {
+    // let startNum = Math.floor((min2 + max2) / 2);
+    let startNum = Math.floor((Math.random() * 100) + 1);
+    console.log(startNum);
+    usedPCGuesses.push(startNum);
+    console.log(usedPCGuesses);
+    return startNum;
+}
+
+// pcGuess2 = startNum;
+function compGuess(reply) {
+    
+    pcGuess2 = Math.floor((min2 + max2) / 2);
+
+    if(reply === 'lower') {
+        max2 = pcGuess2 - 1;
+        usedPCGuesses.push(pcGuess2);
+        // return pcGuess2;
+    } else if(reply === 'higher') {
+        min2 = pcGuess2 + 1;
+        usedPCGuesses.push(pcGuess2);
+        // return pcGuess2;
+    } else if( reply === 'correct') { 
+        usedPCGuesses.push(pcGuess2);
+        // return pcGuess2;
+    }
+console.log(pcGuess2);
+console.log(usedPCGuesses);
+return pcGuess2;
+}
