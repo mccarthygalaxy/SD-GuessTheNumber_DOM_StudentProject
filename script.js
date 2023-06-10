@@ -87,6 +87,7 @@ function compGuess(reply) {
         // return pcGuess2;
     }
 console.log(pcGuess2);
-console.log(usedPCGuesses);
+console.log(`Used Guesses: ${usedPCGuesses}`);
+console.log(`Number of Guesses: ${usedPCGuesses.length}`);
 return pcGuess2;
 }
