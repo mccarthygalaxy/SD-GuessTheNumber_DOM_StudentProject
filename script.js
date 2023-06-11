@@ -85,7 +85,10 @@ function startCompGuess(num) {
 //? Section 2
 
 function compGuess(reply) {
-    if (playState === `won`) { // already won, user reset game
+    if (usedPCGuesses.length > 7) {
+        return `I think you are cheating.`;
+
+    } else if (playState === `won`) { // already won, user reset game
         return `You already won, click start to play again.`;
 
     } else if (reply === 'correct') { // PC won no need to go farther, just return
@@ -97,11 +100,11 @@ function compGuess(reply) {
 
     } else if (reply === 'lower') { // PC guess was > number to guess, sub 1 to max, goto bottom of function to return
         max2 = pcGuess2 - 1;
+    
     }
-
     // We are here because PC hasn't won or already won or PC's guess was wrong
     pcGuess2 = Math.floor((min2 + max2) / 2);
-
+    
     //store the guess in the array of guesses
     usedPCGuesses.push(pcGuess2);
     // logging various goings on to see the number to guess, etc.
@@ -109,7 +112,7 @@ function compGuess(reply) {
     console.log(`Computer guessed: ${pcGuess2}`);
     console.log(`Used Guesses: ${usedPCGuesses}`);
     console.log(`Number of Guesses: ${usedPCGuesses.length}`);
-
+    
     // return PC guess
     return `Is it ${pcGuess2}?`;
 }
