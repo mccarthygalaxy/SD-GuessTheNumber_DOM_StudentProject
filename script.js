@@ -65,41 +65,51 @@ let pcGuess2 = null;
 let usedPCGuesses = [];
 let min2 = 1;
 let max2 = 100;
+let playState = "";
+let randNumberToGuess = 0;
+
+/* below, `num` is a randomly generated number generated from main.js. It does not have to be used, you can use a number in your head for purposes of this.  `num/numberToGuess` is not stored anywhere, just logged.
+*/
 
 function startCompGuess(num) {
-    let startNum = Math.floor((min2 + max2) / 2);
-    // let startNum = Math.floor((Math.random() * 100) + 1);
-    console.log(startNum);
-    usedPCGuesses.push(startNum);
-    console.log(usedPCGuesses);
-    return startNum;
+    randNumberToGuess = num;
+
+    min2 = 1;
+    max2 = 100;
+    usedPCGuesses = [];
+    playState = `playing`;
+
+    return compGuess('startup'); //have computer make first guess
 }
 
 //? Section 2
 
 function compGuess(reply) {
-    pcGuess2 = Math.floor((min2 + max2) / 2);
-    
-    if (reply === 'lower') {
-        max2 = pcGuess2 - 1;
-        pcGuess2 = Math.floor((min2 + max2) / 2);
-        usedPCGuesses.push(pcGuess2);
-        console.log(usedPCGuesses);
-        return `${pcGuess2}`;
-    } else if (reply === 'higher') {
+    if (playState === `won`) { // already won, user reset game
+        return `You already won, click start to play again.`;
+
+    } else if (reply === 'correct') { // PC won no need to go farther, just return
+        playState = `won`;
+        return `'${pcGuess2}' - I win in (${usedPCGuesses.length}) turns! \n Pitiful Human  :-)  ..........  [${usedPCGuesses}]`;
+
+    } else if (reply === 'higher') { // PC guess was < number to guess, add 1 to min, goto bottom of function to return
         min2 = pcGuess2 + 1;
-        pcGuess2 = Math.floor((min2 + max2) / 2);
-        usedPCGuesses.push(pcGuess2);
-        console.log(usedPCGuesses);
-        return `${pcGuess2}`;
-    } else if (reply === 'correct') {
-        pcGuess2 = Math.floor((min2 + max2) / 2);
-        // usedPCGuesses.push(pcGuess2);
-        console.log(usedPCGuesses);
-        let finalPCGuesses = usedPCGuesses;
-        console.log(`Used Guesses: ${usedPCGuesses}`);
-        console.log(`Number of Guesses: ${usedPCGuesses.length}`);
-        usedPCGuesses = [];
-        return `'${pcGuess2}' - I win in (${finalPCGuesses.length}) turns! \n Pitiful Human  :-)  . . .  [${finalPCGuesses}]`;
+
+    } else if (reply === 'lower') { // PC guess was > number to guess, sub 1 to max, goto bottom of function to return
+        max2 = pcGuess2 - 1;
     }
+
+    // We are here because PC hasn't won or already won or PC's guess was wrong
+    pcGuess2 = Math.floor((min2 + max2) / 2);
+
+    //store the guess in the array of guesses
+    usedPCGuesses.push(pcGuess2);
+    // logging various goings on to see the number to guess, etc.
+    console.log(`Number to guess: ${randNumberToGuess}`);
+    console.log(`Computer guessed: ${pcGuess2}`);
+    console.log(`Used Guesses: ${usedPCGuesses}`);
+    console.log(`Number of Guesses: ${usedPCGuesses.length}`);
+
+    // return PC guess
+    return `Is it ${pcGuess2}?`;
 }
