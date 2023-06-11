@@ -90,5 +90,5 @@ function compGuess(reply) {
     } else if (reply === 'correct') {
         pcGuess2 = Math.floor((min2 + max2) / 2);
         return `"${pcGuess2}" -- I WIN.`;
-    }
+    }    
 }
