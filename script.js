@@ -45,7 +45,7 @@ function randomNumber(userGuess, computersNumber) {
         console.log(`correct number = ${guessN}`);
         usedGuesses.push(guessN);
         console.log(usedGuesses);
-        outputGuesses = usedGuesses.join(" - ");
+        outputGuesses = usedGuesses.join(" * ");
 
         responseString = `That is right! ${guessN} is the Secret Number\nin [ ${usedGuesses.length} ] guesses: - [ ${outputGuesses} ]`;
         return responseString;
@@ -77,18 +77,29 @@ function startCompGuess(num) {
 
 //? Section 2
 
-// pcGuess2 = startNum;
 function compGuess(reply) {
     pcGuess2 = Math.floor((min2 + max2) / 2);
-
+    
     if (reply === 'lower') {
         max2 = pcGuess2 - 1;
+        pcGuess2 = Math.floor((min2 + max2) / 2);
+        usedPCGuesses.push(pcGuess2);
+        console.log(usedPCGuesses);
         return `${pcGuess2}`;
     } else if (reply === 'higher') {
         min2 = pcGuess2 + 1;
+        pcGuess2 = Math.floor((min2 + max2) / 2);
+        usedPCGuesses.push(pcGuess2);
+        console.log(usedPCGuesses);
         return `${pcGuess2}`;
     } else if (reply === 'correct') {
         pcGuess2 = Math.floor((min2 + max2) / 2);
-        return `"${pcGuess2}" -- I WIN.`;
-    }    
+        // usedPCGuesses.push(pcGuess2);
+        console.log(usedPCGuesses);
+        let finalPCGuesses = usedPCGuesses;
+        console.log(`Used Guesses: ${usedPCGuesses}`);
+        console.log(`Number of Guesses: ${usedPCGuesses.length}`);
+        usedPCGuesses = [];
+        return `'${pcGuess2}' - I win in (${finalPCGuesses.length}) turns! \n Pitiful Human  :-)  . . .  [${finalPCGuesses}]`;
+    }
 }
