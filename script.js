@@ -4,6 +4,7 @@
 */
 
 // YOUR CODE BELOW
+//! Game Part 1
 
 let usedGuesses = [];
 let min = 1;
@@ -15,14 +16,14 @@ function randomNumber(userGuess, computersNumber) {
     let secretN = computersNumber;
     let responseString = "";
     console.log(secretN);
-    
-    if (guessN > max || guessN < min) { 
+
+    if (guessN > max || guessN < min) {
         console.log(`${guessN} is outside set limits`);
         responseString = `Warning, ${guessN} is outside the bounds.`;
         usedGuesses.push(guessN);
         console.log(usedGuesses);
         return responseString;
-    } else if (usedGuesses.includes(guessN)) { 
+    } else if (usedGuesses.includes(guessN)) {
         console.log(`${guessN} is a REPEAT GUESS.`);
         responseString = `Warning, ${guessN} is a guess you've already made.`;
         usedGuesses.push(guessN);
@@ -42,18 +43,23 @@ function randomNumber(userGuess, computersNumber) {
         return responseString;
     } else if (guessN == secretN) {
         console.log(`correct number = ${guessN}`);
-        responseString = `That is right! ${guessN} is the Secret Number\nin [ ${usedGuesses.length} ] guesses!`;
         usedGuesses.push(guessN);
         console.log(usedGuesses);
+        outputGuesses = usedGuesses.join(" - ");
+
+        responseString = `That is right! ${guessN} is the Secret Number\nin [ ${usedGuesses.length} ] guesses: - [ ${outputGuesses} ]`;
         return responseString;
     }
 
     console.log(usedGuesses);
 
-// return responseString;
+    // return responseString;
     // YOUR CODE ABOVE
 };
 
+//! Game Part 2
+
+//? Section 1
 
 let pcGuess2 = null;
 let usedPCGuesses = [];
@@ -61,33 +67,10 @@ let min2 = 1;
 let max2 = 100;
 
 function startCompGuess(num) {
-    // let startNum = Math.floor((min2 + max2) / 2);
-    let startNum = Math.floor((Math.random() * 100) + 1);
+    let startNum = Math.floor((min2 + max2) / 2);
+    // let startNum = Math.floor((Math.random() * 100) + 1);
     console.log(startNum);
     usedPCGuesses.push(startNum);
     console.log(usedPCGuesses);
     return startNum;
-}
-
-// pcGuess2 = startNum;
-function compGuess(reply) {
-    
-    pcGuess2 = Math.floor((min2 + max2) / 2);
-
-    if(reply === 'lower') {
-        max2 = pcGuess2 - 1;
-        usedPCGuesses.push(pcGuess2);
-        // return pcGuess2;
-    } else if(reply === 'higher') {
-        min2 = pcGuess2 + 1;
-        usedPCGuesses.push(pcGuess2);
-        // return pcGuess2;
-    } else if( reply === 'correct') { 
-        usedPCGuesses.push(pcGuess2);
-        // return pcGuess2;
-    }
-console.log(pcGuess2);
-console.log(`Used Guesses: ${usedPCGuesses}`);
-console.log(`Number of Guesses: ${usedPCGuesses.length}`);
-return pcGuess2;
 }
