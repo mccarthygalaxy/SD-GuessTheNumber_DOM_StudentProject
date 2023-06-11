@@ -74,3 +74,21 @@ function startCompGuess(num) {
     console.log(usedPCGuesses);
     return startNum;
 }
+
+//? Section 2
+
+// pcGuess2 = startNum;
+function compGuess(reply) {
+    pcGuess2 = Math.floor((min2 + max2) / 2);
+
+    if (reply === 'lower') {
+        max2 = pcGuess2 - 1;
+        return `${pcGuess2}`;
+    } else if (reply === 'higher') {
+        min2 = pcGuess2 + 1;
+        return `${pcGuess2}`;
+    } else if (reply === 'correct') {
+        pcGuess2 = Math.floor((min2 + max2) / 2);
+        return `"${pcGuess2}" -- I WIN.`;
+    }
+}
